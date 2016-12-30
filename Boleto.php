@@ -2,7 +2,6 @@
 
 namespace sleifer\boleto;
 
-
 use yii\base\Widget;
 
 class Boleto extends Widget{
@@ -28,32 +27,26 @@ class Boleto extends Widget{
     /* ============= SETS ============== */
     
     public function setIpte($ipte) {
-        //Setando IPTE ou Linha digitável
         $this -> ipte = $ipte;
     }
     
     public function setBarras($barras) {
-        //Setando Código de Barras
         $this -> barras = $barras;
     }
     
     public function setCodBanco($codBanco) {
-        //Setando Código do Banco
         $this -> codBanco = substr($codBanco, 0, 3);
     }
     
     public function setCodMoeda($codMoeda) {
-        //Setando Código do Tipo da Moeda
         $this -> codMoeda = $codMoeda;
     }
     
     public function setCodVerificador($codVerificador) {
-        //Setando Dígito Veerificador
         $this -> codVerificador = $codVerificador;
     }
     
     public function setDtVencimento($dtVencimento) {
-        //Setando data do vencimento
         $this -> dtVencimento = $dtVencimento;
     
         /*
@@ -71,30 +64,25 @@ class Boleto extends Widget{
     }
     
     public function setFatorVencimento($fatorVencimento) {
-        //Setando o fator de vencimento
         $this -> fatorVencimento = $fatorVencimento;
     }
     
     public function setValorDocumento($valorDocumento) {
-        //Setando valor do documento
         $valorDocumento = str_replace(".", "", $valorDocumento);
         $this -> valorDocumento = str_replace(",", "", $valorDocumento);
     }
     
     public function setNossoNumero($nossoNumero) {
-        //Setando Nosso Número
         $this -> nossoNumero = $nossoNumero;
     }
     
     public function setCarteira($carteira) {
-        //Setando Número da Carteira
         $this -> carteira = $carteira;
     }
     
     /* ===================== GETS ========================= */
     
     public function getIpte() {
-        //Pegando IPTE ou linha digitável
         if (empty($this -> ipte)) {
             $this -> ipte = $this -> calcIpte();
         }
@@ -102,7 +90,6 @@ class Boleto extends Widget{
     }
     
     public function getBarras() {
-        //Pegando Código de Barras
         if (empty($this -> barras)) {
             $this -> calcBarras();
         }
@@ -111,7 +98,6 @@ class Boleto extends Widget{
     }
     
     public function getCodBanco() {
-        //Pegando Código do Banco
         if (empty($this -> codBanco)) {
             if (!empty($this -> barras)) {
                 $this -> codBanco = substr($this -> barras, 0, 3);
@@ -126,7 +112,6 @@ class Boleto extends Widget{
     }
     
     public function getCodMoeda() {
-        //Pegando Código da Moeda
         if (empty($this -> codMoeda)) {
             if (!empty($this -> barras)) {
                 $this -> codMoeda = substr($this -> barras, 3, 1);
@@ -141,7 +126,6 @@ class Boleto extends Widget{
     }
     
     public function getCodVerificador() {
-        //Pegando Digito Verificador
         if (empty($this -> codVerificador)) {
             if (!empty($this -> barras)) {
                 $this->calcVerificadorBarras($this->barras);
@@ -156,7 +140,6 @@ class Boleto extends Widget{
     }
     
     public function getDtVencimento($formato = "d/m/Y") {
-        //Pegando data de vencimento
         if (empty($this -> dtVencimento)) {
             if (!empty($this -> barras)) {
                 $this -> calcDtVencimento(substr($this -> barras, 5, 4));
@@ -170,7 +153,6 @@ class Boleto extends Widget{
     }
     
     public function getFatorVencimento() {
-        //Pegando fator do vencimento
         if (empty($this -> fatorVencimento)) {
             if (!empty($this -> barras)) {
                 $this -> fatorVencimento = substr($this -> barras, 5, 4);
@@ -184,7 +166,6 @@ class Boleto extends Widget{
     }
     
     public function getValorDocumento($centavos = ",", $milhar = ".") {
-        //Pegando Valor do documento
         if (empty($this -> valorDocumento)) {
             if (!empty($this -> barras)) {
                 $this -> valorDocumento = substr($this -> barras, 9, 10);
@@ -210,7 +191,6 @@ class Boleto extends Widget{
     }
     
     public function getNossoNumero(){
-        //Pegando Nosso Número
         if(empty($this->nossoNumero)){
             if (!empty($this -> barras)) {
                 $this -> nossoNumero = substr($this -> barras, 25, 17);
@@ -224,7 +204,6 @@ class Boleto extends Widget{
     }
     
     public function getCarteira(){
-        //Pegando Carteira
         if(empty($this->carteira)){
             if (!empty($this -> barras)) {
                 $this -> carteira = substr($this -> barras, 42, 2);
@@ -237,7 +216,6 @@ class Boleto extends Widget{
         return $this->carteira;
     }
     
-    //Desenhar barras
     public function desenhaBarras(){
     
         if(empty($this->barras)){
