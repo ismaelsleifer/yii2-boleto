@@ -51,7 +51,7 @@ class Boleto extends Widget{
         $this->dtVencimento = $dtVencimento;
     
         /*
-         * A data base para cauculo do fator de vencimento é 07/10/1997,
+         * A data base para calculo do fator de vencimento é 07/10/1997,
          * O fator de Vencimento é a diferença de dias entre a data base e a data de vencimento do boleto
          */
         $base = new DateTime("07/10/1997");
@@ -225,7 +225,7 @@ class Boleto extends Widget{
     
         $valor = $this->barras;
     
-        $fino = 1 ;
+        $fino = 1;
         $largo = 3 ;
         $altura = 50 ;
     
@@ -250,7 +250,7 @@ class Boleto extends Widget{
             }
         }
 
-        $bar = "<div style='overflow:hidden;width:417px;height:50px;'>
+        $bar = "<div>
                     <img src='{$this->bundle->baseUrl}/images/p.gif' width={$fino} height={$altura} border=0><img
                     src='{$this->bundle->baseUrl}/images/b.gif' width={$fino} height={$altura} border=0><img
                     src='{$this->bundle->baseUrl}/images/p.gif' width={$fino} height={$altura} border=0><img
