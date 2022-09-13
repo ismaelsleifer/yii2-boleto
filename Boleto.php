@@ -289,7 +289,7 @@ class Boleto extends Widget{
         return substr($entra,strlen($entra)-$comp,$comp);
     }
 
-    /* ================  CAUCULOS  ===================*/
+    /* ================  CALCULOS  ===================*/
     
     private function calcIpte() {
         if (!empty($this->barras)) {
@@ -378,7 +378,7 @@ class Boleto extends Widget{
         }
     }
 
-    //Caucula veririficadores do IPTE
+    //Calcula veririficadores do IPTE
     private function verificadorIPTE($numero) {
         $numero = str_replace(".", "", $numero);
         $soma = 0;
