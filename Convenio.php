@@ -4,6 +4,8 @@ namespace sleifer\boleto;
 
 use common\components\Number;
 use Picqer\Barcode\BarcodeGeneratorHTML;
+use Picqer\Barcode\BarcodeGeneratorPNG;
+use Picqer\Barcode\BarcodeGeneratorSVG;
 
 class Convenio{
 
@@ -24,7 +26,7 @@ class Convenio{
     }
 
     public function desenhaBarras(){
-        $barCode = new BarcodeGeneratorHTML();
+        $barCode = new BarcodeGeneratorSVG();
         return $barCode->getBarcode($this->bar_code, $barCode::TYPE_INTERLEAVED_2_5, 1, 50);;
     }
 
